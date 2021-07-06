@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# CodeStream ignored files
+/../../CaseStudy_Module2_QLNV\.idea/codestream.xml
+# Datasource local storage ignored files
+/../../../../:\JavaProject\CaseStudy_Module2_QLNV\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
