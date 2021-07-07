@@ -34,6 +34,7 @@ public class Main {
             System.out.println("Chọn chức năng theo số (để tiếp tục)");
             System.out.println("1. Đăng nhập");
             System.out.println("2. Đăng ký");
+            System.out.println("3. Thoát khỏi chương trình!");
             int choiceLog = Integer.parseInt(sc.nextLine());
             if (choiceLog == 1) {
                 while (true) {
@@ -58,6 +59,9 @@ public class Main {
                         break;
                     }
                 }
+            }else if (choiceLog == 3) {
+                System.out.println("Đang thoát khỏi chương trình....");
+                System.exit(0);
             }
         }
     }

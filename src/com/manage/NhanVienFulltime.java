@@ -5,7 +5,6 @@ public class NhanVienFulltime extends NhanVien {
     private double soTienPhat;
     private double luongCung;
 
-
     public NhanVienFulltime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, double soTienThuong, double soTienPhat, double luongCung) {
         super(maNV, tenNV, tuoiNV, phone, email, status);
         this.soTienThuong = soTienThuong;
