@@ -42,7 +42,6 @@ public class Manage {
         }
     }
 
-
     public boolean addNVFulltime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, double soTienThuong, double soTienPhat, double luongCung) throws IOException {
         for (NhanVien s : nhanViens) {
             if (s.getMaNV().equals(maNV)) {
