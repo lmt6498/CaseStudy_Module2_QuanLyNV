@@ -10,15 +10,13 @@ public class ReadWriteFileText {
         try {
             FileWriter fileWriter = new FileWriter(path);
             bufferedWriter = new BufferedWriter(fileWriter);
-            String str = "ID,Name, Age, Phone, Email";
-            bufferedWriter.write(str);
             for (NhanVien s : products) {
-                bufferedWriter.newLine();
                 if (s instanceof NhanVienFulltime) {
                     bufferedWriter.write(((NhanVienFulltime) s).writeNVFT());
                 } else if (s instanceof NhanVienParttime) {
                     bufferedWriter.write(((NhanVienParttime) s).writeNVPT());
                 }
+                bufferedWriter.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
