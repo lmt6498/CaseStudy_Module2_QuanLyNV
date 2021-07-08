@@ -59,12 +59,13 @@ public class Main {
                         break;
                     }
                 }
-            }else if (choiceLog == 3) {
+            } else if (choiceLog == 3) {
                 System.out.println("Đang thoát khỏi chương trình....");
                 System.exit(0);
             }
         }
     }
+
     public static void menu() throws IOException {
 
         while (true) {
@@ -90,7 +91,9 @@ public class Main {
                 }
                 case 2 -> {
                     System.out.println("Danh sách toàn bộ nhân viên!");
-                    manageNV.read();
+                    manageNV.sortNV();
+                    manageNV.showAll();
+                    manageNV.writeFile();
                 }
                 case 3 -> {
                     System.out.println("1. NV Fulltime!");
@@ -98,30 +101,38 @@ public class Main {
                     int choiceNV = Integer.parseInt(sc.nextLine());
                     switch (choiceNV) {
                         case 1 -> {
-                            String maNV = getMaNV(sc);
-                            String tenNV = getTenNV(sc);
-                            String tuoiNV = getTuoiNV(sc);
-                            String phoneNV = getPhoneNV(sc);
-                            String emailNV = getEmailNV(sc);
-                            Boolean status = getStatus();
-                            System.out.println("Nhập số tiền thưởng:");
-                            double tienThuong = Double.parseDouble(sc.nextLine());
-                            System.out.println("Nhập số tiền phạt:");
-                            double tienPhat = Double.parseDouble(sc.nextLine());
-                            System.out.println("Nhập lương cứng:");
-                            double luongCung = Double.parseDouble(sc.nextLine());
-                            manageNV.addNVFulltime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, tienThuong, tienPhat, luongCung);
+                            while (true) {
+                                String maNV = getMaNV(sc);
+                                String tenNV = getTenNV(sc);
+                                String tuoiNV = getTuoiNV(sc);
+                                String phoneNV = getPhoneNV(sc);
+                                String emailNV = getEmailNV(sc);
+                                Boolean status = getStatus();
+                                System.out.println("Nhập số tiền thưởng:");
+                                double tienThuong = Double.parseDouble(sc.nextLine());
+                                System.out.println("Nhập số tiền phạt:");
+                                double tienPhat = Double.parseDouble(sc.nextLine());
+                                System.out.println("Nhập lương cứng:");
+                                double luongCung = Double.parseDouble(sc.nextLine());
+                                if (manageNV.addNVFulltime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, tienThuong, tienPhat, luongCung)) {
+                                    break;
+                                }
+                            }
                         }
                         case 2 -> {
-                            String maNV = getMaNV(sc);
-                            String tenNV = getTenNV(sc);
-                            String tuoiNV = getTuoiNV(sc);
-                            String phoneNV = getPhoneNV(sc);
-                            String emailNV = getEmailNV(sc);
-                            Boolean status = getStatus();
-                            System.out.println("Nhập số giờ làm: ");
-                            int soGio = Integer.parseInt(sc.nextLine());
-                            manageNV.addNVParttime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, soGio);
+                            while (true) {
+                                String maNV = getMaNV(sc);
+                                String tenNV = getTenNV(sc);
+                                String tuoiNV = getTuoiNV(sc);
+                                String phoneNV = getPhoneNV(sc);
+                                String emailNV = getEmailNV(sc);
+                                Boolean status = getStatus();
+                                System.out.println("Nhập số giờ làm: ");
+                                int soGio = Integer.parseInt(sc.nextLine());
+                                if (manageNV.addNVParttime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, soGio)) {
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -159,7 +170,7 @@ public class Main {
                     System.out.println("Xóa tài khoản");
                     manageRes.deleteAccount();
                 }
-                case 11 ->{
+                case 11 -> {
                     System.out.println("Đăng xuất.....");
                     log();
                 }

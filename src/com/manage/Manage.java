@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class Manage {
     List<NhanVien> nhanViens = ReadWriteFileText.readFile("src/QLNV.txt");
     static Scanner sc = new Scanner(System.in);
-//    static SortNV sortNV = new SortNV();
+    static SortNV sortNV = new SortNV();
+
     public Manage() throws IOException {
     }
 
@@ -42,19 +43,39 @@ public class Manage {
     }
 
 
-    public void addNVFulltime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, double soTienThuong, double soTienPhat, double luongCung) throws IOException {
+    public boolean addNVFulltime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, double soTienThuong, double soTienPhat, double luongCung) throws IOException {
+        for (NhanVien s : nhanViens) {
+            if (s.getMaNV().equals(maNV)) {
+                System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!\n " +
+                        "Bạn có thể xem lại danh sách nhân viên để tránh trùng ID");
+                return false;
+            }
+        }
         nhanViens.add(new NhanVienFulltime(maNV, tenNV, tuoiNV, phone, email, status, soTienThuong, soTienPhat, luongCung));
         ReadWriteFileText.writeFile("src/QLNV.txt", nhanViens);
+        System.out.println("Thêm nhân viên thành công!!");
+        return true;
     }
 
-    public void addNVParttime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, int soGioLam) throws IOException {
+    public boolean addNVParttime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, int soGioLam) throws IOException {
+        for (NhanVien s : nhanViens) {
+            if (s.getMaNV().equals(maNV)) {
+                System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
+                return false;
+            }
+        }
         nhanViens.add(new NhanVienParttime(maNV, tenNV, tuoiNV, phone, email, status, soGioLam));
+        ReadWriteFileText.writeFile("src/QLNV.txt", nhanViens);
+        System.out.println("Thêm nhân viên thành công!!");
+        return true;
+    }
+
+    public void writeFile() throws IOException {
         ReadWriteFileText.writeFile("src/QLNV.txt", nhanViens);
     }
 
-    public void read() throws IOException {
-        nhanViens = ReadWriteFileText.readFile("src/QLNV.txt");
-        showAll();
+    public void sortNV() {
+        nhanViens.sort(sortNV);
     }
 
     public void updateNV(String name) throws IOException {
@@ -142,7 +163,19 @@ public class Manage {
     }
 
     private String getMaNV() {
-        System.out.println("Nhập mã nhân viên: ");
-        return sc.nextLine();
+        while (true) {
+            System.out.println("Nhập mã nhân viên: ");
+            String maNV = sc.nextLine();
+            boolean exist = false;
+            for (NhanVien s : nhanViens) {
+                if (s.getMaNV().equals(maNV)) {
+                    System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
+                    exist = true;
+                }
+            }
+            if (!exist) {
+                return maNV;
+            }
+        }
     }
 }
