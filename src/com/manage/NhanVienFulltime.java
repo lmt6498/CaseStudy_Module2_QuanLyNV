@@ -51,7 +51,7 @@ public class NhanVienFulltime extends NhanVien {
                 ", Tuổi= " + tuoiNV +
                 ", Số điện thoại= " + phone +
                 ", Địa chỉ email= " + email +
-                ", Trạng thái = " + status +
+                ", Trạng thái= " + status +
                 ", Số tiền thưởng= " + soTienThuong +
                 ", Số tiền phạt= " + soTienPhat +
                 ", Lương cứng= " + luongCung +

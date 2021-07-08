@@ -46,8 +46,7 @@ public class Manage {
     public boolean addNVFulltime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, double soTienThuong, double soTienPhat, double luongCung) throws IOException {
         for (NhanVien s : nhanViens) {
             if (s.getMaNV().equals(maNV)) {
-                System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!\n " +
-                        "Bạn có thể xem lại danh sách nhân viên để tránh trùng ID");
+                System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
                 return false;
             }
         }
@@ -78,9 +77,9 @@ public class Manage {
         nhanViens.sort(sortNV);
     }
 
-    public void updateNV(String name) throws IOException {
+    public void updateNV(String ID) throws IOException {
         for (NhanVien s : nhanViens) {
-            if (s.getMaNV().equals(name)) {
+            if (s.getMaNV().equals(ID)) {
                 String maNV = getMaNV();
                 String tenNV = getTenNV();
                 String tuoiNV = getTuoiNV();
