@@ -41,40 +41,8 @@ public class Menu {
                     System.out.println("2. NV Parttime!");
                     int choiceNV = Integer.parseInt(sc.nextLine());
                     switch (choiceNV) {
-                        case 1 -> {
-                            while (true) {
-                                String maNV = getMaNV(sc);
-                                String tenNV = getTenNV(sc);
-                                String tuoiNV = getTuoiNV(sc);
-                                String phoneNV = getPhoneNV(sc);
-                                String emailNV = getEmailNV(sc);
-                                Boolean status = getStatus();
-                                System.out.println("Nhập số tiền thưởng:");
-                                double tienThuong = Double.parseDouble(sc.nextLine());
-                                System.out.println("Nhập số tiền phạt:");
-                                double tienPhat = Double.parseDouble(sc.nextLine());
-                                System.out.println("Nhập lương cứng:");
-                                double luongCung = Double.parseDouble(sc.nextLine());
-                                if (manageNV.addNVFulltime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, tienThuong, tienPhat, luongCung)) {
-                                    break;
-                                }
-                            }
-                        }
-                        case 2 -> {
-                            while (true) {
-                                String maNV = getMaNV(sc);
-                                String tenNV = getTenNV(sc);
-                                String tuoiNV = getTuoiNV(sc);
-                                String phoneNV = getPhoneNV(sc);
-                                String emailNV = getEmailNV(sc);
-                                Boolean status = getStatus();
-                                System.out.println("Nhập số giờ làm: ");
-                                int soGio = Integer.parseInt(sc.nextLine());
-                                if (manageNV.addNVParttime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, soGio)) {
-                                    break;
-                                }
-                            }
-                        }
+                        case 1 -> manageNV.addNVFulltime();
+                        case 2 -> manageNV.addNVParttime();
                     }
                 }
                 case 4 -> {
@@ -127,29 +95,8 @@ public class Menu {
         System.out.println("Nhập trạng thái:");
         return Boolean.parseBoolean(sc.nextLine());
     }
-
-    private static String getEmailNV(Scanner sc) {
-        System.out.println("Nhập email NV: ");
-        return sc.nextLine();
-    }
-
-    private static String getPhoneNV(Scanner sc) {
-        System.out.println("Nhập sđt NV: ");
-        return sc.nextLine();
-    }
-
-    private static String getTuoiNV(Scanner sc) {
-        System.out.println("Nhập tuổi NV: ");
-        return sc.nextLine();
-    }
-
     private static String getTenNV(Scanner sc) {
         System.out.println("Nhập tên NV: ");
-        return sc.nextLine();
-    }
-
-    private static String getMaNV(Scanner sc) {
-        System.out.println("Nhập mã NV: ");
         return sc.nextLine();
     }
 }

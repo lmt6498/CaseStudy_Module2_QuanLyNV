@@ -1,5 +1,7 @@
 package com.manage;
 
+import com.main.Validate;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +10,8 @@ public class Manage {
     List<NhanVien> nhanViens = ReadWriteFileText.readFile("src/QLNV.txt");
     static Scanner sc = new Scanner(System.in);
     static SortNV sortNV = new SortNV();
+    static Validate validate = new Validate();
+
 
     public Manage() throws IOException {
     }
@@ -22,7 +26,7 @@ public class Manage {
 
     public void findByName(String name) {
         for (NhanVien s : nhanViens) {
-            if (s.getTenNV().equals(name)) {
+            if (s.getTenNV().contains(name)) {
                 s.display();
             }
         }
@@ -42,30 +46,36 @@ public class Manage {
         }
     }
 
-    public boolean addNVFulltime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, double soTienThuong, double soTienPhat, double luongCung) throws IOException {
-        for (NhanVien s : nhanViens) {
-            if (s.getMaNV().equals(maNV)) {
-                System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
-                return false;
-            }
-        }
-        nhanViens.add(new NhanVienFulltime(maNV, tenNV, tuoiNV, phone, email, status, soTienThuong, soTienPhat, luongCung));
+    public void addNVFulltime() throws IOException {
+        String maNV = getMaNV();
+        String tenNV = getTenNV();
+        String tuoiNV = getTuoiNV();
+        String phoneNV = getSdtNV();
+        String emailNV = getEmailNV();
+        boolean status = isStatusNV();
+        System.out.println("Nhập số tiền thưởng:");
+        double tienThuong = Double.parseDouble(sc.nextLine());
+        System.out.println("Nhập số tiền phạt:");
+        double tienPhat = Double.parseDouble(sc.nextLine());
+        System.out.println("Nhập lương cứng:");
+        double luongCung = Double.parseDouble(sc.nextLine());
+        nhanViens.add(new NhanVienFulltime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, tienThuong, tienPhat, luongCung));
         ReadWriteFileText.writeFile("src/QLNV.txt", nhanViens);
         System.out.println("Thêm nhân viên thành công!!");
-        return true;
     }
 
-    public boolean addNVParttime(String maNV, String tenNV, String tuoiNV, String phone, String email, boolean status, int soGioLam) throws IOException {
-        for (NhanVien s : nhanViens) {
-            if (s.getMaNV().equals(maNV)) {
-                System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
-                return false;
-            }
-        }
-        nhanViens.add(new NhanVienParttime(maNV, tenNV, tuoiNV, phone, email, status, soGioLam));
+    public void addNVParttime() throws IOException {
+        String maNV = getMaNV();
+        String tenNV = getTenNV();
+        String tuoiNV = getTuoiNV();
+        String phoneNV = getSdtNV();
+        String emailNV = getEmailNV();
+        boolean status = isStatusNV();
+        System.out.println("Nhập số giờ làm: ");
+        int soGio = Integer.parseInt(sc.nextLine());
+        nhanViens.add(new NhanVienParttime(maNV, tenNV, tuoiNV, phoneNV, emailNV, status, soGio));
         ReadWriteFileText.writeFile("src/QLNV.txt", nhanViens);
         System.out.println("Thêm nhân viên thành công!!");
-        return true;
     }
 
     public void writeFile() throws IOException {
@@ -141,35 +151,89 @@ public class Manage {
     }
 
     private String getEmailNV() {
-        System.out.println("Nhập địa chỉ:");
-        return sc.nextLine();
+
+        while (true) {
+            System.out.println("Nhập địa chỉ email:");
+            String emailNV = sc.nextLine();
+            boolean exist = false;
+            boolean isValid = validate.validateEmail(emailNV);
+            if (!isValid) {
+                System.out.println("Định dạng email không hợp lệ. Vui lòng nhập lại!");
+                exist = true;
+            }
+            if (!exist) {
+                return emailNV;
+            }
+        }
     }
 
     private String getSdtNV() {
-        System.out.println("Nhập giới tính:");
-        return sc.nextLine();
+        while (true) {
+            System.out.println("Nhập số điện thoại (9 số hoặc 10 số): ");
+            String sdtNV = sc.nextLine();
+            boolean exist = false;
+            boolean isValid = validate.validatePhoneNV(sdtNV);
+            if (!isValid) {
+                System.out.println("Số điện thoại không hợp lệ. Vui lòng nhập lại!\n" +
+                        "Số điện thoại phải là số!!");
+                exist = true;
+            }
+            if (!exist) {
+                return sdtNV;
+            }
+        }
     }
 
     private String getTuoiNV() {
-        System.out.println("Nhập tuổi:");
-        return sc.nextLine();
+        while (true) {
+            System.out.println("Nhập tuổi nhân viên: ");
+            String tuoiNV = sc.nextLine();
+            boolean exist = false;
+            boolean isValid = validate.validateTuoiNV(tuoiNV);
+            if (!isValid) {
+                System.out.println("Tuổi nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
+                        "Tuổi nhân viên phải là số!!");
+                exist = true;
+            }
+            if (!exist) {
+                return tuoiNV;
+            }
+        }
     }
 
     private String getTenNV() {
-        System.out.println("Nhập tên nhân viên");
-        return sc.nextLine();
+        while (true) {
+            System.out.println("Nhập tên nhân viên: ");
+            String tenNV = sc.nextLine();
+            boolean exist = false;
+            boolean isValid = validate.validateNameNV(tenNV);
+            if (!isValid) {
+                System.out.println("Tên nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
+                        "Tên nhân viên chỉ có các ký tự A-Z,a-z!!!");
+                exist = true;
+            }
+            if (!exist) {
+                return tenNV;
+            }
+        }
     }
 
     private String getMaNV() {
         while (true) {
-            System.out.println("Nhập mã nhân viên: ");
+            System.out.println("Nhập mã nhân viên:(chỉ nhập số) ");
             String maNV = sc.nextLine();
             boolean exist = false;
+            boolean isValid = validate.validateMaNV(maNV);
             for (NhanVien s : nhanViens) {
                 if (s.getMaNV().equals(maNV)) {
                     System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
                     exist = true;
                 }
+            }
+            if (!isValid) {
+                System.out.println("Mã nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
+                        "Mã nhân viên phải là số!!");
+                exist = true;
             }
             if (!exist) {
                 return maNV;
