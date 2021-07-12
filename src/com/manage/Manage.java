@@ -175,7 +175,7 @@ public class Manage {
             boolean isValid = validate.validatePhoneNV(sdtNV);
             if (!isValid) {
                 System.out.println("Số điện thoại không hợp lệ. Vui lòng nhập lại!\n" +
-                        "Số điện thoại phải là số!!");
+                        "Số điện thoại phải là số và bắt đầu bằng 0!!");
                 exist = true;
             }
             if (!exist) {

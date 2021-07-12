@@ -7,7 +7,7 @@ public class Validate {
     private static final String EMAIL_REGEX =   "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
     private static final String ID_REGEX =   "^[0-9]+$";
     private static final String AGE_REGEX =   "^[0-9]+$";
-    private static final String PHONE_REGEX =   "^[0-9]{9,10}$";
+    private static final String PHONE_REGEX =   "^[0]+[0-9]{9,10}$";
     private static final String NAME_REGEX =   "^[\\s.\\D]+$";
     public Validate() {
     }
