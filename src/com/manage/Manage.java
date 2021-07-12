@@ -153,12 +153,12 @@ public class Manage {
     private String getEmailNV() {
 
         while (true) {
-            System.out.println("Nhập địa chỉ email:");
+            System.out.println("Nhập địa chỉ email: (VD:abc@gmail.com)");
             String emailNV = sc.nextLine();
             boolean exist = false;
             boolean isValid = validate.validateEmail(emailNV);
             if (!isValid) {
-                System.out.println("Định dạng email không hợp lệ. Vui lòng nhập lại!");
+                System.err.println("Định dạng email không hợp lệ. Vui lòng nhập lại!");
                 exist = true;
             }
             if (!exist) {
@@ -174,7 +174,7 @@ public class Manage {
             boolean exist = false;
             boolean isValid = validate.validatePhoneNV(sdtNV);
             if (!isValid) {
-                System.out.println("Số điện thoại không hợp lệ. Vui lòng nhập lại!\n" +
+                System.err.println("Số điện thoại không hợp lệ. Vui lòng nhập lại!\n" +
                         "Số điện thoại phải là số và bắt đầu bằng 0!!");
                 exist = true;
             }
@@ -191,7 +191,7 @@ public class Manage {
             boolean exist = false;
             boolean isValid = validate.validateTuoiNV(tuoiNV);
             if (!isValid) {
-                System.out.println("Tuổi nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
+                System.err.println("Tuổi nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
                         "Tuổi nhân viên phải là số!!");
                 exist = true;
             }
@@ -208,7 +208,7 @@ public class Manage {
             boolean exist = false;
             boolean isValid = validate.validateNameNV(tenNV);
             if (!isValid) {
-                System.out.println("Tên nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
+                System.err.println("Tên nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
                         "Tên nhân viên chỉ có các ký tự A-Z,a-z!!!");
                 exist = true;
             }
@@ -220,19 +220,19 @@ public class Manage {
 
     private String getMaNV() {
         while (true) {
-            System.out.println("Nhập mã nhân viên:(chỉ nhập số) ");
+            System.out.println("Nhập mã nhân viên:(CGxxx) ");
             String maNV = sc.nextLine();
             boolean exist = false;
             boolean isValid = validate.validateMaNV(maNV);
             for (NhanVien s : nhanViens) {
                 if (s.getMaNV().equals(maNV)) {
-                    System.out.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
+                    System.err.println("Mã nhân viên đã tồn tại! Vui lòng nhập 1 ID khác!");
                     exist = true;
                 }
             }
             if (!isValid) {
-                System.out.println("Mã nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
-                        "Mã nhân viên phải là số!!");
+                System.err.println("Mã nhân viên không hợp lệ. Vui lòng nhập lại!\n" +
+                        "Mã nhân viên phải bắt đầu bằng CG + số!!");
                 exist = true;
             }
             if (!exist) {

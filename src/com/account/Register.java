@@ -1,6 +1,5 @@
 package com.account;
 
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +14,7 @@ public class Register {
     public boolean register(String userName, String password) throws IOException {
         for (Account s : accounts) {
             if (s.getUserName().equals(userName)) {
-                System.out.println("Tài khoản đã tồn tại! Vui lòng nhập 1 tài khoản khác!");
+                System.err.println("Tài khoản đã tồn tại! Vui lòng nhập 1 tài khoản khác!");
                 return false;
             }
         }
@@ -32,7 +31,7 @@ public class Register {
                 return true;
             }
         }
-        System.out.println("Sai tài khoản hoặc mật khẩu. vui lòng nhập lại");
+        System.err.println("Sai tài khoản hoặc mật khẩu. vui lòng nhập lại");
         return false;
     }
 
@@ -52,7 +51,7 @@ public class Register {
             }
         }
         if (check < 1) {
-            System.out.println("Tài khoản không tồn tại!");
+            System.err.println("Tài khoản không tồn tại!");
         }
     }
 }

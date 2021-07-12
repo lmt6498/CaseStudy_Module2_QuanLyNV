@@ -1,3 +1,3 @@
-1,Tuấn,18,0347183456,luongminhtuan6498@gmail.com,true,200000.0,0.0,5000000.0,5200000.0
-2,Toàn,19,1545488799,toan@gmail.com,true,18,1800000.0
-3,Huy,18,0347183456,huy@gmail.com,true,20,2000000.0
+CG1,Tú,15,0254889978,fas@gmail.com,true,123,1.23E7
+CG2,Phong,15,05687899566,aaa@gmail.com,false,12,1200000.0
+CG3,Tuấn,18,0347183456,lmt@gmail.com,true,15.0,56.0,2151516.0,2151475.0
